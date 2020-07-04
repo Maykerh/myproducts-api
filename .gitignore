@@ -1,5 +1,7 @@
 node_modules
 tmp/*
+src/config/*
+public/*
 .env
 yarn-error.log
 start.txt
