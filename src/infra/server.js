@@ -1,19 +1,15 @@
 import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-
 import 'express-async-errors';
 import 'dotenv/config';
-
-import './infra/database';
-
-import errorHandler from './infra/errors/ErrorHandler';
-
-import routes from './infra/routes';
+import cors from 'cors';
+import httpLogger from './httpLogger';
+import errorHandler from './errors/errorHandler';
+import routes from './routes';
+import './database';
 
 const server = express();
 
-server.use(morgan('combined'));
+server.use(httpLogger);
 server.use(cors());
 server.use(express.json());
 server.use(routes);

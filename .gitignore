@@ -5,3 +5,4 @@ public/*
 .env
 yarn-error.log
 start.txt
+logs/*
