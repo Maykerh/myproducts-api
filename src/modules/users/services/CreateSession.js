@@ -1,4 +1,5 @@
 import { sign } from 'jsonwebtoken';
+import AppError from '../../../infra/errors/AppError';
 
 class CreateSession {
     constructor(usersRepository) {
@@ -9,13 +10,13 @@ class CreateSession {
         const user = await this.usersRepository.findByEmail(email);
 
         if (!user) {
-            throw new Error('Email not found');
+            throw new AppError('Email not found');
         }
 
         const passwordMatch = await user.checkPassword(password);
 
         if (!passwordMatch) {
-            throw new Error('Wrong password');
+            throw new AppError('Wrong password');
         }
 
         const { id, name } = user;

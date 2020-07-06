@@ -1,19 +1,19 @@
 import AppError from '../../../infra/errors/AppError';
 
-class DeleteProduct {
+class GetProduct {
     constructor(productsRepository) {
         this.productsRepository = productsRepository;
     }
 
-    async execute(id) {
-        const product = await this.productsRepository.findByPk(id);
+    async execute(productId) {
+        const product = await this.productsRepository.findByPk(productId);
 
         if (!product) {
             throw new AppError('Product not found');
         }
 
-        await product.destroy();
+        return product;
     }
 }
 
-export default DeleteProduct;
+export default GetProduct;

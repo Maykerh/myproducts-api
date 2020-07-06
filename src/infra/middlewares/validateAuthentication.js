@@ -1,10 +1,11 @@
 import { verify } from 'jsonwebtoken';
+import AppError from '../errors/AppError';
 
 export default function validateAuthentication(req, res, next) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        throw new Error('Token not provided');
+        throw new AppError('Token not provided', 401);
     }
 
     const token = authHeader.split(' ')[1];
@@ -16,6 +17,6 @@ export default function validateAuthentication(req, res, next) {
 
         return next();
     } catch (err) {
-        return res.status(401).json({ error: 'Invalid token' });
+        throw new AppError('Invalid token', 401);
     }
 }

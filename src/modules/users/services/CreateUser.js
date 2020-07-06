@@ -1,3 +1,5 @@
+import AppError from '../../../infra/errors/AppError';
+
 class CreateUser {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -7,7 +9,7 @@ class CreateUser {
         const userExists = await this.usersRepository.findByEmail(email);
 
         if (userExists) {
-            throw new Error('Email already used');
+            throw new AppError('Email already in use');
         }
 
         const user = await this.usersRepository.create({ name, email, password });

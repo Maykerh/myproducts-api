@@ -1,3 +1,5 @@
+import AppError from '../../../infra/errors/AppError';
+
 class CreateProduct {
     constructor(productsRepository) {
         this.productsRepository = productsRepository;
@@ -7,13 +9,13 @@ class CreateProduct {
         const productExists = await this.productsRepository.findByName(productData.name);
 
         if (productExists) {
-            throw new Error('A product with this name already exists');
+            throw new AppError('A product with this name already exists', 400);
         }
 
         const validationErrors = this.productsRepository.validateRequiredFields(productData);
 
         if (validationErrors.length > 0) {
-            throw new Error(validationErrors);
+            throw new AppError(validationErrors, 400);
         }
 
         const product = await this.productsRepository.create(productData);
