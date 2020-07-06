@@ -1,6 +1,8 @@
 {
     "scripts": {
-        "dev": "nodemon src/infra/server.js"
+        "dev": "nodemon src/infra/server.js",
+        "build": "sucrase ./src -d ./build --transforms imports",
+        "start": "node build/infra/server.js"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
