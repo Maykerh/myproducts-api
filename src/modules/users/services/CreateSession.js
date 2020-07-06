@@ -1,10 +1,12 @@
 import { sign } from 'jsonwebtoken';
 
-import User from '../entities/User';
-
 class CreateSession {
+    constructor(usersRepository) {
+        this.usersRepository = usersRepository;
+    }
+
     async execute({ email, password }) {
-        const user = await User.findOne({ where: { email } });
+        const user = await this.usersRepository.findByEmail(email);
 
         if (!user) {
             throw new Error('Email not found');
