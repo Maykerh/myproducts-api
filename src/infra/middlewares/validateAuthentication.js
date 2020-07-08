@@ -13,9 +13,8 @@ export default function validateAuthentication(req, res, next) {
     try {
         verify(token, process.env.APP_SECRET, (err, result) => {
             req.userId = result.id;
+            next();
         });
-
-        return next();
     } catch (err) {
         throw new AppError('Invalid token', 401);
     }

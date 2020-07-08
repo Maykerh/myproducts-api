@@ -6,4 +6,5 @@ public/*
 yarn-error.log
 start.txt
 logs/*
+src/infra/logs/http-requests.log
 build

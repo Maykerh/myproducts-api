@@ -53,8 +53,8 @@ class ProductsRepository {
         }
 
         if (params.category) {
-            queryParams.where.description = {
-                [Op.iLike]: `%${params.description}%`,
+            queryParams.where.category = {
+                [Op.iLike]: `%${params.category}%`,
             };
         }
 
