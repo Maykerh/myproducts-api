@@ -1,6 +1,6 @@
 ## :computer: Project description
 
-This project consists in a simple api built in NodeJs with Express, using some concepts of DDD architecture.
+This project consists in a simple api built with NodeJs with Express, using some concepts of DDD architecture.
 
 It has just few functions, like user registration, authentication and a CRUD of products.
 
